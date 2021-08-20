@@ -20,6 +20,11 @@ mongoose.connect(keys.mongoURI);
 //use 'require' keword to access express library
 const express = require('express');
 const app = express();
+/*
+app.use method wires up middleware. 
+middleware: is small functions that can be used to modify incoming requests before 
+they are sent to route handlers.
+*/
 app.use(
     cookieSession({
         maxAge:30*24*60*60*1000, 
