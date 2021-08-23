@@ -30,21 +30,18 @@ passport.use(
         //(follow up requrest to google: passport automatically 
         //make a request to google with the ”code“ google just gave us 
         //in exchange for user profile and email address)
-        (accessToken, refreshToken, profile, done) => {
-            User.findOne({googleId: profile.id})
-                .then(existingUser =>{
-                    if(existingUser){
-                        //we already have the user's record
-                        done(null, existingUser);
-                    }
-                    else{
-                        //we dont have the user's record
-                        new User({googleId: profile.id})
-                        .save()
-                        .then(user => done(null, user));
-                    }
+        async (accessToken, refreshToken, profile, done) => {
+            const existingUser = await User.findOne({googleId: profile.id});
+            if(existingUser){
+                //we already have the user's record
+                done(null, existingUser);
+            }
+            else{
+                //we dont have the user's record
+                const user = await new User({googleId: profile.id}).save();
+                done(null, user);
+            }
 
-                } )
         }
     )
 );

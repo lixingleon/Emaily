@@ -12,13 +12,17 @@ module.exports = app =>{ //this is only a function, the argument could be anythi
     );          //这两个route几乎一样
     app.get(
         '/auth/google/callback',  // when user is directed to this uri. there is a code behind 'callback',
-        passport.authenticate('google')//passport will then take this code and correspond with google again in exchange for user profile and email
+        passport.authenticate('google'),//passport will then take this code and correspond with google again in exchange for user profile and email
+        (req, res) => {
+            console.log(res.user);
+            res.redirect('/surveys');
+        }
     );
 
     app.get('/api/logout', (req, res) =>{
         //logout method deletes the cookie which represents the unique user.
         req.logout();
-        res.send(req.user);
+        res.redirect('/');
 
     });
 
