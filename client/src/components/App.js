@@ -7,8 +7,8 @@ import * as actions from '../actions';
 
 import Header from './Header';
 import Landing from './Landing';
-const Dashboard = () => <h2>Dashboard</h2>;
-const SurveyNew = () => <h2>SurveyNew</h2>;
+import Dashboard from './Dashboard';
+import SurveyNew from "./surveys/SurveyNew";
 
 class App extends Component{
 
@@ -18,10 +18,11 @@ class App extends Component{
     }
 
     render() {
+        //console.log(this.state);
         return(
             <div className="container">
                 <BrowserRouter>
-                    <div>
+                    <div className="container">
                         <Header/>
                         {/*router greedily matches all routes that matches incoming url*/}
                         {/*so use 'exactly' keyword or 'exact'*/}
@@ -36,4 +37,7 @@ class App extends Component{
     }
 
 };
-export default connect(null, actions)(App);
+const mapStateToProps = (state)=>{
+    console.log(state);
+}
+export default connect(mapStateToProps, actions)(App);

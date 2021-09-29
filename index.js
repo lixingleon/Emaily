@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 
 //googleOauth
 require('./models/User');
+require('./models/Survey');
 //execute the code in passport.js
 require('./services/passport');
 
@@ -39,6 +40,7 @@ const authRoutes = require('./routes/authRoutes');
 authRoutes(app);
 // require('./routes/authRoutes')(app)
 require('./routes/billingRoutes')(app);
+require('./routes/surveyRoutes')(app);
 if(process.env.NODE_ENV ==='production'){
     //Express will serve up production
     //like our main.js file or main.css file

@@ -8,12 +8,17 @@ import reduxThunk from 'redux-thunk';
 
 import App from './components/App';
 import reducers from './reducers';
+import axios from 'axios';
+window.axios = axios;
+
 const store = createStore(reducers, applyMiddleware(reduxThunk));
 
 ReactDOM.render(
     //redux stores states(保存状态)（当状态修改时，redux可以让App自动渲染新的状态数据）
-    //when there are new states available in redux, app will be updated automatically
-    <Provider store={store}> <App /> </Provider>,
+    //when there are new states available in redux, render() will be called again
+    <Provider store={store}>
+        <App />
+    </Provider>,
     document.querySelector('#root')
 );
 

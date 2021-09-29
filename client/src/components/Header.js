@@ -17,7 +17,7 @@ class Header extends Component{
             default:
                 return [    //return an array
                     <li key="1"><Payments/></li>,
-                    <li key={'3'} style={{margin:'0 10px'}}>
+                    <li key="3" style={{margin:'0 10px'}}>
                         Credit:{this.props.auth1.credits}
                     </li>,
                     <li key="2"><a href="/api/logout">Logout</a></li>
@@ -26,7 +26,7 @@ class Header extends Component{
     }
 
     render() {
-        //console.log(this.props);
+
         return(
         <nav>
             <div className="nav-wrapper">
@@ -47,6 +47,7 @@ class Header extends Component{
 }
 
 function mapStateToProps(state){
+    console.log(state);
     return {auth1:state.auth1};
 }
 export default connect(mapStateToProps)(Header);
